@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CVForge AI</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">CVForge <span>AI</span></a>
+  <div class="account">
+    <span id="usage"></span>
+    <a id="authLink" href="/auth.html">Log in</a>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">AI-powered CV builder</p>
+      <h1>Build a stronger CV in minutes.</h1>
+      <p class="sub">Write professional summaries, improve experience bullets, suggest skills, and tailor your CV to a job description.</p>
+      <div class="hero-actions">
+        <button id="generateBtn" class="primary">Generate with AI</button>
+        <button id="saveBtn" class="secondary">Save CV</button>
+        <select id="template" class="template-select"><option value="classic">Classic</option><option value="modern">Modern</option><option value="minimal">Minimal</option></select>
+      </div>
+      <p id="status" class="status"></p>
+    </div>
+    <div class="pricing-card">
+      <strong>Free → Pro</strong>
+      <p>Free: 3 AI generations/month</p>
+      <p>Pro: 100 AI generations/month</p>
+      <button id="upgradeBtn" class="secondary">Upgrade to Pro</button>
+      <button id="careerBtn" class="secondary">Get Career Pack</button>
+    </div>
+  </section>
+
+  <section class="builder">
+    <div class="panel">
+      <h2>Your details</h2>
+      <label>Full name<input id="name" placeholder="Your full name"></label>
+      <label>Target role<input id="role" placeholder="e.g. Frontend Developer"></label>
+      <label>Professional summary<textarea id="summary" rows="5" placeholder="Tell employers who you are..."></textarea></label>
+      <button class="ai-btn" data-mode="summary">✨ Improve summary with AI</button>
+
+      <label>Experience<textarea id="experience" rows="9" placeholder="Role — Company&#10;• Responsibility or achievement&#10;• Responsibility or achievement"></textarea></label>
+      <button class="ai-btn" data-mode="experience">✨ Improve experience with AI</button>
+
+      <label>Skills<textarea id="skills" rows="5" placeholder="JavaScript, Communication, Excel..."></textarea></label>
+      <label>Education<textarea id="education" rows="4" placeholder="Degree — School — Year"></textarea></label>
+      <label>Certifications<textarea id="certifications" rows="4" placeholder="Certification — Issuer — Year"></textarea></label>
+      <button class="ai-btn" data-mode="skills">✨ Suggest skills with AI</button>
+
+      <label>Job description<textarea id="jobDescription" rows="8" placeholder="Paste the job description here to tailor your CV..."></textarea></label>
+      <button class="ai-btn" data-mode="tailor">✨ Tailor my CV to this job</button>
+    </div>
+
+    <div class="panel preview-panel">
+      <div class="preview-head"><h2>Live preview</h2><button id="printBtn" class="secondary">Print / PDF</button>
+        <button id="downloadBtn" class="primary">Download PDF</button></div>
+      <article id="preview" class="cv-paper"></article>
+    </div>
+  </section>
+</main>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <button id="closeModal" class="close">×</button>
+    <h2>AI generation</h2>
+    <p id="modalText">Working on your CV...</p>
+    <div class="loader"></div>
+  </div>
+</div>
+
+<script src="/script.js"></script>
+</body>
+</html>

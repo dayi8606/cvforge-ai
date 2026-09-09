@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CVForge AI — Account</title>
+  <link rel="stylesheet" href="/auth.css">
+</head>
+<body>
+<main class="auth-card">
+  <a href="/" class="brand">CVForge <span>AI</span></a>
+  <h1 id="title">Create your account</h1>
+  <p id="subtitle">Save your CV and use your AI generations.</p>
+  <form id="form">
+    <input id="name" placeholder="Full name" autocomplete="name">
+    <input id="email" type="email" placeholder="Email" autocomplete="email" required>
+    <input id="password" type="password" placeholder="Password (8+ characters)" autocomplete="new-password" required>
+    <button class="primary">Continue</button>
+  </form>
+  <p id="message"></p>
+  <button id="toggle" class="link-btn">Already have an account? Log in</button>
+</main>
+<script>
+let signup=true;
+const form=document.querySelector("#form"), nameEl=document.querySelector("#name"), title=document.querySelector("#title"), subtitle=document.querySelector("#subtitle"), toggle=document.querySelector("#toggle"), msg=document.querySelector("#message");
+toggle.onclick=()=>{signup=!signup; nameEl.style.display=signup?"block":"none"; nameEl.required=signup; title.textContent=signup?"Create your account":"Welcome back"; subtitle.textContent=signup?"Save your CV and use your AI generations.":"Log in to continue."; toggle.textContent=signup?"Already have an account? Log in":"Need an account? Sign up";};
+form.onsubmit=async e=>{e.preventDefault(); msg.textContent=""; const url=signup?"/api/auth/register":"/api/auth/login"; const body=signup?{name:nameEl.value,email:email.value,password:password.value}:{email:email.value,password:password.value}; const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}); const d=await r.json(); if(!r.ok){msg.textContent=d.error||"Something went wrong";return;} location.href="/";};
+</script>
+</body>
+</html>
